@@ -25,3 +25,21 @@ def test_more_offset_than_items():
     expected = [((1, 2), '*'), ((3, 4), '*'), ((5, 6), '*'),
                 ('*', '*'), ('*', (1, 2)), ('*', (3, 4)), ('*', (5, 6))]
     assert expected == actual
+
+
+def test_single_item():
+    actual = list(pairwise_offset('a', offset=1))
+    expected = [('a', '*'), ('*', 'a')]
+    assert expected == actual
+
+
+def test_single_item_offset_two():
+    actual = list(pairwise_offset('a', offset=2))
+    expected = [('a', '*'), ('*', '*'), ('*', 'a')]
+    assert expected == actual
+
+
+def test_single_item_larger_offset():
+    actual = list(pairwise_offset('a', offset=3))
+    expected = [('a', '*'), ('*', '*'), ('*', '*'), ('*', 'a')]
+    assert expected == actual
